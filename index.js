@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
-//Allow express to use json
+// Allow express to use json
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -11,8 +11,9 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-    console.log(req.body);
-    res.send("Hello World!");
+   //Print all data 
+   console.log(req.body);
+   res.send(res.body)
 });
 
 app.listen(port, () => {
