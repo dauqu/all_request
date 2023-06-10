@@ -1,9 +1,10 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+const bodyParser = require("body-parser");
 
 // Allow express to use json
-app.use(express.json());
+app.use(bodyParser.json({ limit: "10mb" }));
 
 app.get("/", (req, res) => {
     console.log(req.body);
