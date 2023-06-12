@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
   }
 
   //Check if phone number is less than 10 digits
-  if (req.body.phone.length < 10) {
+  if (req.body.phone.length < 10 || req.body.phone.length > 10) {
     return res.status(400).json({
       message: "Phone number must be 10 digits",
       status: "error",
