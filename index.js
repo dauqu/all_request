@@ -34,13 +34,14 @@ app.get("/", (req, res) => {
 
 app.use("/sms", require("./routes/sms"));
 app.use("/login", require("./routes/login"));
+app.use("/data", require("./routes/data"));
 
 app.post("/", (req, res) => {
    //Print all data 
    console.log(req.body);
    res.send(res.body)
-});
-
+}); 
+ 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
