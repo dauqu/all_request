@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const DataSchema = require("./../models/login_schema");
+const DataSchema = require("./../models/data_schema");
 
 //Get all watchlists
 router.get("/", async (req, res) => {
