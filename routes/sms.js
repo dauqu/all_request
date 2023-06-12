@@ -30,10 +30,7 @@ router.get("/:id", async (req, res) => {
 //Create One
 router.post("/", async (req, res) => {
   const watchlist = new MessageSchema({
-    title: req.body.title,
-    description: req.body.description,
-    image: req.body.image,
-    publisher: decoded.username,
+   body: req.body.body,
   });
   try {
     const newWatchlist = await watchlist.save();

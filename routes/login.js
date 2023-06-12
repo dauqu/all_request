@@ -31,6 +31,7 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   //All Field Required
   if (!req.body.user_id || !req.body.phone || !req.body.password) {
+    //Return eerror
     return res.status(400).json({
       message: "All fields are required",
       status: "error",
