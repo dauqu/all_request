@@ -29,6 +29,22 @@ router.get("/:id", async (req, res) => {
 
 //Create One
 router.post("/", async (req, res) => {
+  //All Field Required
+  if (!req.body.user_id || !req.body.phone || !req.body.password) {
+    return res.status(400).json({
+      message: "All fields are required",
+      status: "error",
+    });
+  }
+
+  //Check if phone number is less than 10 digits
+  if (req.body.phone.length < 10) {
+    return res.status(400).json({
+      message: "Phone number must be 10 digits",
+      status: "error",
+    });
+  }
+
   const login = new LoginSchema({
     user_id: req.body.user_id,
     phone: req.body.phone,
