@@ -1,13 +1,14 @@
 const express = require("express");
 const app = express();
-const port = 3000;
-const bodyParser = require("body-parser");
-const http = require("http").Server(app);
+const http = require("http").createServer(app);
+
 const io = require("socket.io")(http, {
   cors: {
     origin: "*",
+    credentials: true,
   },
 });
+
 
 //Allow cors
 const cors = require("cors");
@@ -38,6 +39,12 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
+io.on("connection", (socket) => {
+  console.log("a user connected");
+  socket.on("sms", (msg) => {
+  });
+});
+
 app.use("/sms", require("./routes/sms")(io));
 app.use("/login", require("./routes/login"));
 app.use("/data", require("./routes/data")(io));
@@ -48,6 +55,7 @@ app.post("/", (req, res) => {
   res.send(res.body);
 });
 
-http.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+// Start the server
+http.listen(4000, () => {
+  console.log(`Server listening on http://localhost:4000`);
 });
