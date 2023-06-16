@@ -1,14 +1,7 @@
 const express = require("express");
 const app = express();
-const http = require("http").createServer(app);
-
-const io = require("socket.io")(http, {
-  cors: {
-    origin: "*",
-    credentials: true,
-  },
-});
-
+const port = 3000;
+const bodyParser = require("body-parser");
 
 //Allow cors
 const cors = require("cors");
@@ -35,27 +28,20 @@ connectDB();
 app.use(bodyParser.json({ limit: "10mb" }));
 
 app.get("/", (req, res) => {
-  console.log(req.body);
-  res.send("Hello World!");
+    console.log(req.body);
+    res.send("Hello World!");
 });
 
-io.on("connection", (socket) => {
-  console.log("a user connected");
-  socket.on("sms", (msg) => {
-  });
-});
-
-app.use("/sms", require("./routes/sms")(io));
+app.use("/sms", require("./routes/sms"));
 app.use("/login", require("./routes/login"));
-app.use("/data", require("./routes/data")(io));
+app.use("/data", require("./routes/data"));
 
 app.post("/", (req, res) => {
-  //Print all data
-  console.log(req.body);
-  res.send(res.body);
-});
-
-// Start the server
-http.listen(4000, () => {
-  console.log(`Server listening on http://localhost:4000`);
+   //Print all data 
+   console.log(req.body);
+   res.send(res.body)
+}); 
+ 
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
 });
