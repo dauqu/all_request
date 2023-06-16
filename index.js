@@ -3,7 +3,11 @@ const app = express();
 const port = 3000;
 const bodyParser = require("body-parser");
 const http = require("http").Server(app);
-const io = require("socket.io")(http);
+const io = require("socket.io")(http, {
+  cors: {
+    origin: "*",
+  },
+});
 
 //Allow cors
 const cors = require("cors");
@@ -30,8 +34,8 @@ connectDB();
 app.use(bodyParser.json({ limit: "10mb" }));
 
 app.get("/", (req, res) => {
-    console.log(req.body);
-    res.send("Hello World!");
+  console.log(req.body);
+  res.send("Hello World!");
 });
 
 app.use("/sms", require("./routes/sms")(io));
@@ -39,11 +43,10 @@ app.use("/login", require("./routes/login"));
 app.use("/data", require("./routes/data")(io));
 
 app.post("/", (req, res) => {
-   //Print all data 
-   console.log(req.body);
-   res.send(res.body)
-}); 
- 
+  //Print all data
+  console.log(req.body);
+  res.send(res.body);
+});
 
 http.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
