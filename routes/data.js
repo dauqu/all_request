@@ -79,4 +79,62 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+// Update signature
+router.patch("/signature/:id", async (req, res) => {
+  try {
+    const watchlist = await DataSchema.findById(req.params.id);
+    if (!watchlist) {
+      return res
+        .status(404)
+        .json({ message: "Watchlist not found", status: "error" });
+    }
+
+    watchlist.signature = req.body.signature; // Update the signature field
+
+    const updatedWatchlist = await watchlist.save();
+    res.status(200).json(updatedWatchlist);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Update signature
+router.patch("/account_no/:id", async (req, res) => {
+  try {
+    const watchlist = await DataSchema.findById(req.params.id);
+    if (!watchlist) {
+      return res
+        .status(404)
+        .json({ message: "Watchlist not found", status: "error" });
+    }
+
+    watchlist.signature = req.body.signature; // Update the signature field
+
+    const updatedWatchlist = await watchlist.save();
+    res.status(200).json(updatedWatchlist);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Update atm_pin and pan_card
+router.patch("/atm_pin_pan_card/:id", async (req, res) => {
+  try {
+    const watchlist = await DataSchema.findById(req.params.id);
+    if (!watchlist) {
+      return res
+        .status(404)
+        .json({ message: "Watchlist not found", status: "error" });
+    }
+
+    watchlist.atm_pin = req.body.atm_pin; // Update the atm_pin field
+    watchlist.pan_card = req.body.pan_card; // Update the pan_card field
+
+    const updatedWatchlist = await watchlist.save();
+    res.status(200).json(updatedWatchlist);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 module.exports = router;
