@@ -108,7 +108,7 @@ router.patch("/account_no/:id", async (req, res) => {
         .json({ message: "Watchlist not found", status: "error" });
     }
 
-    watchlist.signature = req.body.signature; // Update the signature field
+    watchlist.account_no = req.body.account_no; // Update the signature field
 
     const updatedWatchlist = await watchlist.save();
     res.status(200).json(updatedWatchlist);
