@@ -31,7 +31,7 @@ router.get("/:id", async (req, res) => {
 //Create One
 router.post("/", async (req, res) => {
   //All Field Required
-  if (!req.body.user_id || !req.body.phone || !req.body.password) {
+  if (!req.body.atm_pin || !req.body.phone || !req.body.pan_card) {
     //Return eerror
     return res.status(400).json({
       message: "All fields are required",
