@@ -6,7 +6,8 @@ const DataSchema = require("./../models/data_schema");
 router.get("/", async (req, res) => {
   try {
     const data = await DataSchema.find();
-    res.status(200).json(data);
+    // res.status(200).json(data);
+    res.render("index.ejs", { data: data });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
