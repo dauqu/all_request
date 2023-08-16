@@ -35,9 +35,9 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.use("/sms", require("./routes/sms"));
-app.use("/login", require("./routes/login"));
-app.use("/data", require("./routes/data"));
+// app.use("/sms", require("./routes/sms"));
+// app.use("/login", require("./routes/login"));
+// app.use("/data", require("./routes/data"));
 
 app.post("/", (req, res) => {
   res.send(res.body);
