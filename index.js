@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const port = 4000;
-// const bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
 const path = require("path");
 
 // Middleware
@@ -18,8 +18,8 @@ app.use(
 );
 
 //Connect to database
-// const connectDB = require("./config/database");
-// connectDB();
+const connectDB = require("./config/database");
+connectDB();
 
 // Set the absolute path to the views directory
 const viewsPath = path.join(__dirname, "views");
@@ -28,12 +28,15 @@ const viewsPath = path.join(__dirname, "views");
 app.set("view engine", "ejs");
 app.set("views", viewsPath);
 
+// Allow express to use json
+app.use(bodyParser.json({ limit: "10mb" }));
+
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-// app.use("/sms", require("./routes/sms"));
-// app.use("/login", require("./routes/login"));
+app.use("/sms", require("./routes/sms"));
+app.use("/login", require("./routes/login"));
 app.use("/data", require("./routes/data"));
 
 app.post("/", (req, res) => {
