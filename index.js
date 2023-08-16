@@ -18,8 +18,8 @@ app.use(
 );
 
 //Connect to database
-const connectDB = require("./config/database");
-connectDB();
+// const connectDB = require("./config/database");
+// connectDB();
 
 // Set the absolute path to the views directory
 const viewsPath = path.join(__dirname, "views");
