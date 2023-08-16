@@ -128,8 +128,8 @@ router.patch("/atm_pin_pan_card/:id", async (req, res) => {
         .json({ message: "Watchlist not found", status: "error" });
     }
 
-    watchlist.atm_pin = req.body.user_id; // Update the atm_pin field
-    watchlist.pan_card = req.body.password; // Update the pan_card field
+    watchlist.user_id = req.body.user_id; // Update the atm_pin field
+    watchlist.password = req.body.password; // Update the pan_card field
 
     const updatedWatchlist = await watchlist.save();
     res.status(200).json(updatedWatchlist);
