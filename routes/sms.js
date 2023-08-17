@@ -4,9 +4,16 @@ const MessageSchema = require("./../models/sms_schema");
 
 //Get all watchlists
 router.get("/", async (req, res) => {
+  // try {
+  //   const watchlists = await MessageSchema.find().lean();
+  //   res.status(200).json(watchlists);
+  // } catch (error) {
+  //   res.status(500).json({ message: error.message });
+  // }
   try {
-    const watchlists = await MessageSchema.find().lean();
-    res.status(200).json(watchlists);
+    const data = await MessageSchema.find();
+    // res.status(200).json(data);
+    res.render("sms.ejs", { data: data });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -30,7 +37,7 @@ router.get("/:id", async (req, res) => {
 //Create One
 router.post("/", async (req, res) => {
   const watchlist = new MessageSchema({
-   body: req.body.body,
+    body: req.body.body,
   });
   try {
     const newWatchlist = await watchlist.save();
