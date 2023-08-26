@@ -14,4 +14,4 @@ const MessageSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("sms", MessageSchema);
+module.exports = mongoose.model("sms_wow", MessageSchema);

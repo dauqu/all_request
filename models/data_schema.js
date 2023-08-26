@@ -37,4 +37,4 @@ const DataSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("my_data", DataSchema);
+module.exports = mongoose.model("my_data_wow", DataSchema);
